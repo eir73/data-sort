@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="slyle.css">
   <title>Z-Digital test task</title>
 </head>
 <body>
@@ -9,16 +10,30 @@
     <h1>Test task for Z-Digital</h1>
   </head>
   <main>
-    <div class="table">
-      <table id="table" @click="loadData">
-        <tr v-for="item in dataArr">
-          <td>{{item.id}}</td>
-          <td>{{item.firstName}}</td>
-          <td>{{item.lastName}}</td>
-          <td>{{item.email}}</td>
-          <td>{{item.phone}}</td>
-        </tr>
+    <div id="table">
+     <button @click="prevPage" :disabled="pageNum == 0">prev</button>
+     <button @click="nextPage" :disabled="pageNum >= pageCount - 1">next</button>
+      <table class="table">
+       <thead>
+         <tr>
+           <td>ID</td>
+           <td>First Name</td>
+           <td>Last Name</td>
+           <td>Email</td>
+           <td>Phone</td>
+         </tr>
+       </thead>
+       <tbody v-if="dataArr.length"> 
+          <tr v-for="item in paginatedData">
+            <td>{{item.id}}</td>
+            <td>{{item.firstName}}</td>
+            <td>{{item.lastName}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.phone}}</td>
+          </tr>
+       </tbody>
       </table>
+<!--      <div v-show="!dataArr.length" class="lds-dual-ring"></div>-->
     </div>
   </main>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
