@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Z-Digital test task</title>
+</head>
+<body>
+  <head>
+    <h1>Test task for Z-Digital</h1>
+  </head>
+  <main>
+    <div class="table">
+      <table id="table" @click="loadData">
+        <tr v-for="item in dataArr">
+          <td>{{item.id}}</td>
+          <td>{{item.firstName}}</td>
+          <td>{{item.lastName}}</td>
+          <td>{{item.email}}</td>
+          <td>{{item.phone}}</td>
+        </tr>
+      </table>
+    </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
