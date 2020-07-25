@@ -127,7 +127,7 @@
           </tr>
        </tfoot>
        <tbody v-if="dataArr.length"> 
-          <tr v-for="item in paginatedData">
+          <tr v-for="item in paginatedData" @click="selectPerson(e, item)">
             <td>{{item.id}}</td>
             <td>{{item.firstName}}</td>
             <td>{{item.lastName}}</td>
@@ -137,6 +137,16 @@
        </tbody>
       </table>
       <div v-if="!dataArr.length" class="lds-dual-ring"></div>
+      <div v-if="selectedPerson" class="description">
+        <p>Выбран пользователь: <b>{{selectedPerson.firstName + '  ' + selectedPerson.lastName}} </b></p>
+        <textarea cols="30" rows="5">
+          {{selectedPerson.description}}
+        </textarea>
+        <p>Адрес проживания: <b>{{selectedPerson.adress.streetAddress}}</b></p>
+        <p>Город: <b>{{selectedPerson.adress.city}}</b></p>
+        <p>Провинция / Штат: <b>{{selectedPerson.adress.state}}</b></p>
+        <p>Индекс: <b>{{selectedPerson.adress.zip}}</b></p>
+      </div>
     </div>
   </main>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
