@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="slyle.css">
+  <title>Z-Digital test task</title>
+</head>
+<body>
+  <header>
+    <h1>Тестовое задание для вакансии <br> frontend-разработчик</h1>
+  </header>
+  <main>
+    <div id="table">
+    <div v-show="searchBtnExpanded" class="search-btn">
+      <button @click="filterData">Search</button>
+    </div>
+      <table>
+       <thead>
+         <tr>
+           <td>
+            <p @click="sortById">  
+              ID 
+              <span v-if="sortedBy.id == 1">&nearr;</span>
+              <span v-else-if="sortedBy.id == -1">&searr;</span>
+              <span v-else>&nbsp;</span>
+            </p>
+            <span @click="showIdInput">&#128269;</span>
+            <input 
+              v-show="searchBy.id.expanded"
+              type="text"
+              v-model="searchBy.id.text">
+           </td>
+           <td>
+            <p @click="sortByFirstName">
+              First Name
+              <span v-if="sortedBy.firstName == 1">&nearr;</span>
+              <span v-else-if="sortedBy.firstName == -1">&searr;</span>
+              <span v-else>&nbsp;</span>
+            </p>
+            <span @click="showFirstNameInput">&#128269;</span>
+            <input 
+              v-show="searchBy.firstName.expanded"
+              type="text"
+              v-model="searchBy.firstName.text">
+           </td>
+           <td>
+            <p @click="sortByLastName">
+             Last Name
+             <span v-if="sortedBy.lastName == 1">&nearr;</span>
+             <span v-else-if="sortedBy.lastName == -1">&searr;</span>
+             <span v-else>&nbsp;</span>
+            </p>
+            <span @click="showLastNameInput">&#128269;</span>
+             <input 
+              v-show="searchBy.lastName.expanded"
+              type="text"
+              v-model="searchBy.lastName.text">
+           </td>
+           <td>
+            <p @click="sortByEmail">
+              Email
+              <span v-if="sortedBy.email == 1">&nearr;</span>
+              <span v-else-if="sortedBy.email == -1">&searr;</span>
+              <span v-else>&nbsp;</span>
+            </p>
+            <span @click="showEmailInput">&#128269;</span>
+            <input
+               v-show="searchBy.email.expanded"
+              type="text"
+              v-model="searchBy.email.text">
+           </td>
+           <td>
+             <p @click="sortByPhone">
+                Phone
+                <span v-if="sortedBy.phone == 1">&nearr;</span>
+                <span v-else-if="sortedBy.phone == -1">&searr;</span>
+                <span v-else>&nbsp;</span>
+             </p>
+             <span @click="showPhoneInput">&#128269;</span>
+             <input 
+              v-show="searchBy.phone.expanded"
+              type="text"
+              v-model="searchBy.phone.text">
+           </td>
+         </tr>
+       </thead>
+       <tfoot v-if="dataArr.length">
+          <tr>
+            <td colspan="1">  
+              <button 
+                @click="showPrevPage" 
+                :disabled="pageNum == 0">&lt;</button>
+            </td>
+            <td colspan="3">
+              <div id="pagination">
+                <span 
+                  v-show="pageNum > 1" 
+                  @click="showFirstPage">1</span>
+                <span 
+                  v-show="pageNum == 3"
+                  @click="showPrevPage(e, 2)">2</span>
+                <span 
+                  v-show="pageNum > 3" 
+                  @click="showPrevPage(e, 2)">...</span>
+                <span 
+                  v-show="pageNum > 0" 
+                  @click="showPrevPage">{{pageNum}}</span>
+                <span class="current-page">{{pageNum + 1}}</span>
+                <span 
+                  v-show="(pageNum < pageCount - 1) && (pageNum > 1)" 
+                  @click="showNextPage">{{pageNum + 2}}</span>
+                <span 
+                  v-show="pageNum < pageCount - 4"
+                  @click="showNextPage(e, 2)">...</span>
+                <span
+                  v-show="pageNum == pageCount - 4"
+                  @click="showNextPage(e, 2)">{{pageCount - 1}}</span>
+                <span 
+                  v-show="pageNum < pageCount - 2" @click="showLastPage">{{pageCount}}</span>
+              </div>
+            </td>
+            <td>
+              <button 
+                @click="showNextPage" 
+                :disabled="pageNum >= pageCount - 1">&gt;</button>
+            </td>
+          </tr>
+       </tfoot>
+       <tbody v-if="dataArr.length"> 
+          <tr v-for="item in paginatedData">
+            <td>{{item.id}}</td>
+            <td>{{item.firstName}}</td>
+            <td>{{item.lastName}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.phone}}</td>
+          </tr>
+       </tbody>
+      </table>
+      <div v-if="!dataArr.length" class="lds-dual-ring"></div>
+    </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
