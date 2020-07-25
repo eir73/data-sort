@@ -5,6 +5,7 @@ const table = new Vue({
   data: {
     dataArr: [],
     filteredData: [],
+    selectedPerson: false,
     pageNum: 0,
     elPerPage: 50,
     sortedBy: {
@@ -179,6 +180,9 @@ const table = new Vue({
           })
         }
       }
+    },
+    selectPerson(e, person) {
+      this.selectedPerson = person
     }
   }
 })
