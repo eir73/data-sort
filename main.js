@@ -1,4 +1,4 @@
-const bigURL = 'http://www.filltext.com/?rows=100&id={number|1000}&firstName={firstName}&delay=3&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&adress={addressObject}&description={lorem|32}'
+const URL = 'http://www.filltext.com/?rows=1000&id={number|1000}&firstName={firstName}&delay=3&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&adress={addressObject}&description={lorem|32}'
 
 const table = new Vue({
   el: '#table',
@@ -39,7 +39,7 @@ const table = new Vue({
     }
   },
   created: function() {
-      fetch(bigURL)
+      fetch(URL)
         .then(response => response.body)
         .then(stream => {
           const reader = stream.getReader();
